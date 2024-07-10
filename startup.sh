@@ -7,6 +7,17 @@ export PGPORT=5432
 export PGDATABASE=postgres
 export PGPASSWORD="theo663966@"
 
+# Change ownership and permissions of the wwwroot directory
+echo "Changing permissions of /home/site/wwwroot..."
+chown -R www-data:www-data /home/site/wwwroot
+chmod -R 755 /home/site/wwwroot
+
+# Extract the content of /home/site/wwwroot if it's compressed
+if [ -f /home/site/wwwroot/output.tar.gz ]; then
+    echo "Extracting /home/site/wwwroot/output.tar.gz..."
+    tar -xzvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot
+fi
+
 # Install requirements
 python3 -m pip install -r requirements.txt
 
