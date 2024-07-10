@@ -100,7 +100,7 @@ git init
 
 
 git add .
-git commit -m "3"
+git commit -m "4"
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
@@ -109,4 +109,4 @@ git push -u origin main --force
 
 
 Source directory     : /tmp/8dca0e8fedad367
-Destination directory: /home/site/wwwroot
+Destination directory: cd /home/site/wwwroot

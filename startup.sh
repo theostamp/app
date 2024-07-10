@@ -18,6 +18,9 @@ if [ -f /home/site/wwwroot/output.tar.gz ]; then
     tar -xzvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot
 fi
 
+# Navigate to the wwwroot directory
+cd /home/site/wwwroot || { echo "Failed to change directory to /home/site/wwwroot"; exit 1; }
+
 # Install requirements
 python3 -m pip install -r requirements.txt
 
