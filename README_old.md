@@ -97,9 +97,13 @@ docker-compose logs -f
 
 
 git init
+
+
 git add .
-git commit -m "Initial commit"
+git commit -m "1"
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
+
+
 git push -u origin main --force
 

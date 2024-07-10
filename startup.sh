@@ -5,7 +5,7 @@ export PGHOST=dign-server.postgres.database.azure.com
 export PGUSER=yylokmwbnf
 export PGPORT=5432
 export PGDATABASE=postgres
-export PGPASSWORD="ILpR2pi$JtXfKNhx"
+export PGPASSWORD="theo663966@"
 
 # Install requirements
 python3 -m pip install -r requirements.txt
