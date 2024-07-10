@@ -8,33 +8,43 @@ export PGDATABASE=postgres
 export PGPASSWORD="theo663966@"
 
 # Change ownership and permissions of the wwwroot directory
-echo "Changing permissions of /home/site/wwwroot..."
-chown -R www-data:www-data /home/site/wwwroot
-chmod -R 755 /home/site/wwwroot
+if [ -d /home/site/wwwroot ]; then
+    echo "Changing permissions of /home/site/wwwroot..."
+    chown -R www-data:www-data /home/site/wwwroot
+    chmod -R 755 /home/site/wwwroot
+else
+    echo "/home/site/wwwroot does not exist."
+    exit 1
+fi
 
 # Extract the content of /home/site/wwwroot if it's compressed
 if [ -f /home/site/wwwroot/output.tar.gz ]; then
     echo "Extracting /home/site/wwwroot/output.tar.gz..."
-    tar -xzvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot
+    tar -xzvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot || { echo "Extraction failed"; exit 1; }
+else
+    echo "/home/site/wwwroot/output.tar.gz does not exist."
 fi
 
-# Navigate to the wwwroot directory
-# cd /home/site/wwwroot || { echo "Failed to change directory to /home/site/wwwroot"; exit 1; }
-
-# Install requirements
-python3 -m pip install -r requirements.txt
+# Check if requirements.txt exists
+if [ -f /home/site/wwwroot/requirements.txt ]; then
+    # Install requirements
+    python3 -m pip install -r /home/site/wwwroot/requirements.txt || { echo "Failed to install requirements"; exit 1; }
+else
+    echo "requirements.txt not found."
+    exit 1
+fi
 
 echo "Running migrations for postgres database..."
 {
-    python manage.py makemigrations authentication
-    python manage.py makemigrations restaurant_review
-    python manage.py makemigrations tenants
-    python manage.py makemigrations
-    python manage.py migrate tenants --noinput || echo "Migrate tenants failed"
-    python manage.py migrate authentication --noinput || echo "Migrate authentication failed"
-    python manage.py migrate restaurant_review --noinput || echo "Migrate restaurant_review failed"
-    python manage.py migrate_schemas --noinput || echo "Migrate schemas failed"
-    python manage.py migrate --noinput || echo "Migrate failed"
+    python /home/site/wwwroot/manage.py makemigrations authentication
+    python /home/site/wwwroot/manage.py makemigrations restaurant_review
+    python /home/site/wwwroot/manage.py makemigrations tenants
+    python /home/site/wwwroot/manage.py makemigrations
+    python /home/site/wwwroot/manage.py migrate tenants --noinput || echo "Migrate tenants failed"
+    python /home/site/wwwroot/manage.py migrate authentication --noinput || echo "Migrate authentication failed"
+    python /home/site/wwwroot/manage.py migrate restaurant_review --noinput || echo "Migrate restaurant_review failed"
+    python /home/site/wwwroot/manage.py migrate_schemas --noinput || echo "Migrate schemas failed"
+    python /home/site/wwwroot/manage.py migrate --noinput || echo "Migrate failed"
 } || {
     echo "Migrations failed"
     exit 1
@@ -45,14 +55,14 @@ export PGDATABASE=dign-database
 
 echo "Running migrations for dign-database database..."
 {
-    python manage.py migrate --noinput || echo "Migrate failed"
+    python /home/site/wwwroot/manage.py migrate --noinput || echo "Migrate failed"
 } || {
     echo "Migrations failed"
     exit 1
 }
 
 echo "Creating public tenant and domain..."
-python manage.py shell << END
+python /home/site/wwwroot/manage.py shell << END
 from tenants.models import Tenant, Domain
 from django.db import connection
 
