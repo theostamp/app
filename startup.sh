@@ -19,7 +19,7 @@ if [ -f /home/site/wwwroot/output.tar.gz ]; then
 fi
 
 # Navigate to the wwwroot directory
-cd /home/site/wwwroot || { echo "Failed to change directory to /home/site/wwwroot"; exit 1; }
+# cd /home/site/wwwroot || { echo "Failed to change directory to /home/site/wwwroot"; exit 1; }
 
 # Install requirements
 python3 -m pip install -r requirements.txt
@@ -83,4 +83,4 @@ except Exception as e:
 END
 
 echo "Starting gunicorn server..."
-python manage.py runserver
+gunicorn --workers 2 --threads 4 --timeout 60 --access-logfile '-' --error-logfile '-' --bind=0.0.0.0:8000 azureproject.wsgi
