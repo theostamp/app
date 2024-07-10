@@ -7,23 +7,23 @@ export PGPORT=5432
 export PGDATABASE=postgres
 export PGPASSWORD="theo663966@"
 
-# Change ownership and permissions of the wwwroot directory
-if [ -d /home/site/wwwroot ]; then
-    echo "Changing permissions of /home/site/wwwroot..."
-    chown -R www-data:www-data /home/site/wwwroot
-    chmod -R 755 /home/site/wwwroot
-else
-    echo "/home/site/wwwroot does not exist."
-    exit 1
-fi
+# # Change ownership and permissions of the wwwroot directory
+# if [ -d /home/site/wwwroot ]; then
+#     echo "Changing permissions of /home/site/wwwroot..."
+#     chown -R www-data:www-data /home/site/wwwroot
+#     chmod -R 755 /home/site/wwwroot
+# else
+#     echo "/home/site/wwwroot does not exist."
+#     exit 1
+# fi
 
-# Extract the content of /home/site/wwwroot if it's compressed
-if [ -f /home/site/wwwroot/output.tar.gz ]; then
-    echo "Extracting /home/site/wwwroot/output.tar.gz..."
-    tar -xzvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot || { echo "Extraction failed"; exit 1; }
-else
-    echo "/home/site/wwwroot/output.tar.gz does not exist."
-fi
+# # Extract the content of /home/site/wwwroot if it's compressed
+# if [ -f /home/site/wwwroot/output.tar.gz ]; then
+#     echo "Extracting /home/site/wwwroot/output.tar.gz..."
+#     tar -xzvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot || { echo "Extraction failed"; exit 1; }
+# else
+#     echo "/home/site/wwwroot/output.tar.gz does not exist."
+# fi
 
 # Check if requirements.txt exists
 if [ -f /home/site/wwwroot/requirements.txt ]; then
