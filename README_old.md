@@ -100,7 +100,7 @@ git init
 
 
 git add .
-git commit -m "add tenants to both net sites"
+git commit -m "add tenants to both net sites 1"
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
