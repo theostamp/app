@@ -48,29 +48,20 @@ python /home/site/wwwroot/manage.py shell << END
 from tenants.models import Tenant, Domain
 from django.db import connection
 
-try:
-    tenant = Tenant(name='public_tenant', schema_name='public_tenant')
-    tenant.save()
-except Exception as e:
-    print(f"Error creating tenant: {e}")
+# Function to create tenant and domain
+def create_tenant(name, schema_name, domain_name):
+    try:
+        tenant = Tenant(name=name, schema_name=schema_name)
+        tenant.save()
+        Domain.objects.create(domain=domain_name, tenant=tenant, is_primary=True)
+    except Exception as e:
+        print(f"Error creating tenant or domain {domain_name}: {e}")
 
-try:
-    public_tenant = Tenant.objects.get(name='public_tenant')
-    Domain.objects.create(domain='dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net', tenant=public_tenant, is_primary=True)
-except Exception as e:
-    print(f"Error creating domain: {e}")
-
-try:
-    tenant = Tenant(name='public', schema_name='public')
-    tenant.save()
-except Exception as e:
-    print(f"Error creating tenant: {e}")
-
-try:
-    public = Tenant.objects.get(name='public')
-    Domain.objects.create(domain='dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net', tenant=public, is_primary=True)
-except Exception as e:
-    print(f"Error creating domain: {e}")
+# Create public_tenant and public tenants with both domains
+create_tenant('public_tenant', 'public_tenant', 'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net')
+create_tenant('public_tenant', 'public_tenant', 'digns.net')
+create_tenant('public', 'public', 'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net')
+create_tenant('public', 'public', 'digns.net')
 
 END
 
