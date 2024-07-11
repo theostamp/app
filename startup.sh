@@ -43,7 +43,7 @@ echo "Running migrations for dign-database database..."
     exit 1
 }
 
-echo "Creating public tenant and domain..."
+echo "Creating public tenant and domain...V5"
 python /home/site/wwwroot/manage.py shell << END
 from tenants.models import Tenant, Domain
 from django.db import connection
