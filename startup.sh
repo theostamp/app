@@ -7,17 +7,6 @@ export PGPORT=5432
 export PGDATABASE=postgres
 export PGPASSWORD="theo663966@"
 
-try:
-    tenant = Tenant(name='public', schema_name='public')
-    tenant.save()
-except Exception as e:
-    print(f"Error creating tenant: {e}")
-
-try:
-    public = Tenant.objects.get(name='public')
-    Domain.objects.create(domain='digns.net', tenant=public, is_primary=True)
-except Exception as e:
-    print(f"Error creating domain: {e}")
 # Check if requirements.txt exists
 if [ -f /home/site/wwwroot/requirements.txt ]; then
     # Install requirements
