@@ -83,15 +83,12 @@ def update_json_file(file_path, data):
     except Exception as e:
         logging.error(f"Error updating JSON file: {e}")
 
+
+        
+
+
 def has_write_permission(path):
-    try:
-        testfile = os.path.join(path, 'testfile')
-        with open(testfile, 'w') as f:
-            pass
-        os.remove(testfile)
-        return True
-    except (IOError, OSError):
-        return False
+    return os.access(path, os.W_OK)
 
 @csrf_exempt
 @require_http_methods(["POST"])
@@ -127,12 +124,17 @@ def upload_json(request, tenant):
 
             return JsonResponse({'status': 'success'})
         except json.JSONDecodeError:
+            logger.error("Invalid JSON data")
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'}, status=400)
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
             return JsonResponse({'status': 'error', 'message': 'Unexpected error occurred'}, status=500)
 
+    logger.error("Invalid request method")
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+
+
 
 @csrf_exempt
 def list_order_files(request, tenant):

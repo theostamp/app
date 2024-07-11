@@ -8,7 +8,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'localhost', '*','[::1]','dign-f4ppygyebzqos-app-service.azurewebsites.net']
+ALLOWED_HOSTS = ['localhost', 'localhost', '*','[::1]','dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net']
 
 
 

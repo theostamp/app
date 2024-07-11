@@ -13,9 +13,14 @@ except Exception as e:
     print(f"Unexpected error setting schema to public on startup: {e}")
 
 # Configure the domain name using the environment variable that Azure automatically creates for us.
-ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
-CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
-DEBUG = False
+# ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+# CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+# DEBUG = False
+
+# import os
+
+ALLOWED_HOSTS = ['dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = ['http://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net', 'https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net']
 
 
 
