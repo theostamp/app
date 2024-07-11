@@ -19,14 +19,21 @@ except Exception as e:
 
 # import os
 
-ALLOWED_HOSTS = ['dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net','*','https://*.digns.net']
-CSRF_TRUSTED_ORIGINS = [
-    'http://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net', 
-    'https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net', 
-    'https://digns.net',
-    'https://*.digns.net'
+ALLOWED_HOSTS = [
+    'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
+    'digns.net',
+    'theo.digns.net',
+    'demo.digns.net',
+    # Προσθέστε και άλλα subdomains που χρειάζεστε
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
+    'https://digns.net',
+    'https://theo.digns.net',
+    'https://demo.digns.net',
+    # Προσθέστε και άλλα subdomains που χρειάζεστε
+]
 
 
 CORS_ALLOWED_ORIGINS = [
