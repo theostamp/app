@@ -100,7 +100,7 @@ git init
 
 
 git add .
-git commit -m "fix connectio upload json"
+git commit -m "add digns.net as main https 1"
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
