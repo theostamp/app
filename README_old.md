@@ -100,7 +100,7 @@ git init
 
 
 git add .
-git commit -m "fix startup 5 "
+git commit -m "fix startup 6 "
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
