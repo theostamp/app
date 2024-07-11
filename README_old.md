@@ -30,22 +30,26 @@
     <!-- pip install daphne -->
     pip install gunicorn
 
-  
+  pip install -r requirements.txt
 
 ## To run the server, run the following command:
-        
+
+       
     python manage.py makemigrations authentication
+    python manage.py makemigrations admin
     python manage.py makemigrations tables
     python manage.py makemigrations tenants
     python manage.py makemigrations
-    
+    python manage.py makemigrations admin 
+
     python manage.py migrate tenants
-    python manage.py migrate authentication
+    python manage.py migrate authentication   
+    python manage.py migrate admin
     python manage.py migrate tables
     python manage.py migrate_schemas
     python manage.py migrate_schemas --shared 
     python manage.py migrate 
-
+  
 
     
 python manage.py shell
@@ -100,7 +104,7 @@ git init
 
 
 git add .
-git commit -m "fix startup 6 "
+git commit -m "fix startup 7 "
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
@@ -139,3 +143,12 @@ Domain.objects.create(domain='digns.net', tenant=public_tenant, is_primary=True)
 
 # Επαληθεύστε ότι το νέο domain προστέθηκε σωστά
 print(Domain.objects.all())
+
+
+
+    python manage.py migrate tenants zero
+    python manage.py migrate authentication zero
+    python manage.py migrate tables zero
+    python manage.py migrate_schemas zero
+    python manage.py migrate_schemas --shared  zero
+    python manage.py migrate  zero

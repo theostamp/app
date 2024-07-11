@@ -19,11 +19,13 @@ fi
 echo "Running migrations for postgres database..."
 {
     python /home/site/wwwroot/manage.py makemigrations authentication
+    python /home/site/wwwroot/manage.py makemigrations admin
     python /home/site/wwwroot/manage.py makemigrations restaurant_review
     python /home/site/wwwroot/manage.py makemigrations tenants
     python /home/site/wwwroot/manage.py makemigrations
     python /home/site/wwwroot/manage.py migrate tenants --noinput || echo "Migrate tenants failed"
     python /home/site/wwwroot/manage.py migrate authentication --noinput || echo "Migrate authentication failed"
+    python /home/site/wwwroot/manage.py migrate admin --noinput || echo "Migrate admin failed"
     python /home/site/wwwroot/manage.py migrate restaurant_review --noinput || echo "Migrate restaurant_review failed"
     python /home/site/wwwroot/manage.py migrate_schemas --noinput || echo "Migrate schemas failed"
     python /home/site/wwwroot/manage.py migrate --noinput || echo "Migrate failed"
@@ -43,12 +45,12 @@ echo "Running migrations for dign-database database..."
     exit 1
 }
 
-echo "Creating public tenant and domain...V5"
+echo "Creating public tenant and domain..."
 python /home/site/wwwroot/manage.py shell << END
 from tenants.models import Tenant, Domain
 from django.db import connection
 
-# Function to create tenant and domainls
+# Function to create tenant and domain
 def create_tenant(name, schema_name, domain_name):
     try:
         tenant = Tenant(name=name, schema_name=schema_name)
