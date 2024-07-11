@@ -20,7 +20,7 @@ except Exception as e:
 # import os
 
 ALLOWED_HOSTS = ['dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net','*','https://*.digns.net']
-CSRF_TRUSTED_ORIGINS = ['https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net/', 'http://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net','https://*.dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net/',"https://digns.net",'http://digns.net',"https://*.digns.net"]
+CSRF_TRUSTED_ORIGINS = ['https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net/', 'http://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net','https://*.dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net/',"https://digns.net",'http://digns.net',"https://*.digns.net",'*']
 
 
 
@@ -77,7 +77,11 @@ DATABASE_ROUTERS = (
 # }
 
 
-
+# Ρυθμίσεις CORS
+CORS_ALLOWED_ORIGINS = [
+    "https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net",
+    "https://digns.net",
+]
 
 
 TENANT_MODEL = "tenants.Tenant"

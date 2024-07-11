@@ -100,7 +100,7 @@ git init
 
 
 git add .
-git commit -m "add digns.net as main https 2"
+git commit -m "add digns.net as main https 3"
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
@@ -110,3 +110,32 @@ git push -u origin main --force
 
 Source directory     : /tmp/8dca0e8fedad367
 Destination directory: cd /home/site/wwwroot
+
+
+
+
+
+#εκτελεση στο digns.net
+
+  
+python manage.py shell
+
+from tenants.models import Tenant, Domain
+from django.db import connection
+
+# Δημιουργία ενός δημόσιου ενοικιαστή
+tenant = Tenant(name='public_tenant', schema_name='public_tenant')
+tenant.save()  # Αυτό θα δημιουργήσει επίσης το σχήμα της βάσης δεδομένων
+
+# Ελέγξτε αν ο ενοικιαστής δημιουργήθηκε επιτυχώς
+print(Tenant.objects.all())
+from tenants.models import Tenant, Domain
+
+# Ανακτήστε τον ενοικιαστή 'public_tenant'
+public_tenant = Tenant.objects.get(name='public_tenant')
+
+# Προσθέστε το domain 'digns.net' στον ενοικιαστή 'public_tenant'
+Domain.objects.create(domain='digns.net', tenant=public_tenant, is_primary=True)
+
+# Επαληθεύστε ότι το νέο domain προστέθηκε σωστά
+print(Domain.objects.all())
