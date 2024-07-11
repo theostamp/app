@@ -100,7 +100,7 @@ git init
 
 
 git add .
-git commit -m "6"
+git commit -m "new substruct redis"
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
