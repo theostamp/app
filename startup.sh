@@ -46,7 +46,9 @@ echo "Running migrations for dign-database database..."
 echo "Creating public tenant and domain..."
 python /home/site/wwwroot/manage.py shell << END
 from tenants.models import Tenant, Domain
+from django.db import connection
 
+# Function to create tenant and domain
 def create_tenant(name, schema_name, domain_name):
     try:
         tenant = Tenant(name=name, schema_name=schema_name)
