@@ -18,14 +18,11 @@ except Exception as e:
 DEBUG = True
 
 
-
-# import os
 ALLOWED_HOSTS = [
     'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
     'digns.net',
     'theo.digns.net',
     'demo.digns.net',
-    '*',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -33,7 +30,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://digns.net',
     'https://theo.digns.net',
     'https://demo.digns.net',
-
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -41,8 +37,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
     'https://digns.net',
     'https://*.digns.net',
-
 ]
+
 
 # WhiteNoise configuration
 MIDDLEWARE = [
