@@ -106,7 +106,7 @@ git init
 
 
 git add .
-git commit -m "Works1 ok "
+git commit -m "Works1 ok ? "
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
@@ -191,7 +191,10 @@ print(Domain.objects.all())
 
 
 
-
+export PGHOST=dign-server.postgres.database.azure.com
+export PGUSER=yylokmwbnf
+export PGPORT=5432
+export PGPASSWORD="theo663966@"
 
     python manage.py migrate admin zero
     python manage.py migrate tenants zero
