@@ -6,6 +6,7 @@ export PGUSER=yylokmwbnf
 export PGPORT=5432
 export PGDATABASE=postgres
 export PGPASSWORD="theo663966@"
+export PGDATABASE=dign-database
 
 # Check if requirements.txt exists
 if [ -f /home/site/wwwroot/requirements.txt ]; then
