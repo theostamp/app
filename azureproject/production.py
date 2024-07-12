@@ -15,17 +15,17 @@ except Exception as e:
 # Configure the domain name using the environment variable that Azure automatically creates for us.
 # ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 # CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
-# DEBUG = False
+DEBUG = True
+
+
 
 # import os
-
 ALLOWED_HOSTS = [
     'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
     'digns.net',
     'theo.digns.net',
     'demo.digns.net',
     '*',
-    # Προσθέστε και άλλα subdomains που χρειάζεστε
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -34,9 +34,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://theo.digns.net',
     'https://demo.digns.net',
     '*',
-    # Προσθέστε και άλλα subdomains που χρειάζεστε
 ]
-
 
 CORS_ALLOWED_ORIGINS = [
     'http://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',

@@ -4,7 +4,6 @@
 export PGHOST=dign-server.postgres.database.azure.com
 export PGUSER=yylokmwbnf
 export PGPORT=5432
-export PGDATABASE=postgres
 export PGPASSWORD="theo663966@"
 export PGDATABASE=dign-database
 
@@ -62,9 +61,11 @@ def create_tenant(name, schema_name, domain_name):
 
 # Create public_tenant and public tenants with both domains
 create_tenant('public_tenant', 'public_tenant', 'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net')
-create_tenant('public_tenant', 'public_tenant', 'digns.net')
+create_tenant('public_tenant', 'public_tenant', 'theo.digns.net')
+create_tenant('public_tenant', 'public_tenant', 'demo.digns.net')
 create_tenant('public', 'public', 'dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net')
-create_tenant('public', 'public', 'digns.net')
+create_tenant('public', 'public', 'theo.digns.net')
+create_tenant('public', 'public', 'demo.digns.net')
 
 END
 
