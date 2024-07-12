@@ -513,14 +513,15 @@ def process_orders(folder_path, output_file):
     with open(output_file, 'w') as file:
         json.dump(all_orders, file)
 
-def order_summary(request):
-    schema_name = connection.get_schema()
-    tenant = connection.get_tenant()
-    if not tenant:
-        return HttpResponseBadRequest("Tenant not found")
 
-    products_dict = load_products(tenant)
-    folder_path = os.path.join(workspace_folder, 'tenants_folders', f'{tenant.name}_received_orders')
+
+
+def order_summary(request):
+    tenant = connection.get_tenant()
+    tenant_name = tenant.name  # Χρήση του ονόματος του tenant από τη σύνδεση
+
+    products_dict = load_products(tenant_name)
+    folder_path = os.path.join(workspace_folder, 'tenants_folders', f'{tenant_name}_received_orders')
 
     if not os.path.exists(folder_path):
         context = {'error_message': f"Σφάλμα: Ο φάκελος {folder_path} δεν υπάρχει"}
@@ -558,9 +559,8 @@ def order_summary(request):
                             order_time -= timedelta(days=1)
                         time_passed = current_time - order_time
                         order['time_passed'] = int(time_passed.total_seconds() // 60)
-                        order['time_diff'] = order['time_passed']  # Ενημέρωση του time_diff με το time_passed
+                        order['time_diff'] = order['time_passed']
 
-                        # Ενημέρωση του αρχείου JSON με το ενημερωμένο time_diff
                         with open(file_path, 'w') as update_file:
                             json.dump(order, update_file, indent=4)
                     else:
@@ -580,19 +580,23 @@ def order_summary(request):
                 logger.error(f"Type error: {e}")
                 continue
 
-    # Ταξινόμηση των τραπεζιών βάσει του μεγαλύτερου χρόνου αναμονής
     sorted_orders_by_table = dict(sorted(orders_by_table.items(), key=lambda item: max(order['time_passed'] if isinstance(order['time_passed'], int) else 0 for order in item[1]['orders']), reverse=True))
 
     return render(request, 'tables/order_summary.html', {'sorted_orders_by_table': sorted_orders_by_table})
 
-def load_products(tenant):
-    products_file_path = os.path.join(workspace_folder, 'tenants_folders', f'{tenant.name}_upload_json', 'products.json')
+
+
+
+def load_products(tenant_name):
+    products_file_path = os.path.join(workspace_folder, 'tenants_folders', f'{tenant_name}_upload_json', 'products.json')
     if not os.path.exists(products_file_path):
-        logger.error(f"File not found: {products_file_path}")
         raise FileNotFoundError(f"File not found: {products_file_path}")
     with open(products_file_path, 'r') as file:
         data = json.load(file)
     return {str(product['id']): product for product in data['products']}
+
+
+
 
 @csrf_exempt
 def submit_order(request, table_number=None):
