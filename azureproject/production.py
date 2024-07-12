@@ -97,3 +97,4 @@ DATABASE_ROUTERS = (
 
 TENANT_MODEL = "tenants.Tenant"
 TENANT_DOMAIN_MODEL = "tenants.Domain"
+TENANTS_BASE_FOLDER = os.path.join(BASE_DIR, 'tenants_folders')

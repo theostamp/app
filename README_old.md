@@ -106,7 +106,7 @@ git init
 
 
 git add .
-git commit -m "Works1 "
+git commit -m "Works1 ok "
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 

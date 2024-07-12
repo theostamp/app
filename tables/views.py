@@ -752,6 +752,8 @@ def update_order(request):
         print(f"General error in update_order: {e}")
         return JsonResponse({"success": False, "error": str(e)}, status=500)
 
+
+
 @csrf_exempt
 def delete_order_file(request, filename):
     if request.method == 'DELETE':
@@ -766,6 +768,8 @@ def delete_order_file(request, filename):
             return JsonResponse({'status': 'error', 'message': 'File not found'}, status=404)
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
+
+
 
 @csrf_exempt
 def cancel_order(request):
@@ -790,6 +794,8 @@ def cancel_order(request):
             return JsonResponse({'status': 'error', 'message': str(e)})
     else:
         return JsonResponse({'status': 'error', 'message': 'Μη έγκυρη μέθοδος αιτήματος'})
+
+
 
 @csrf_exempt
 def get_orders_json(request):
