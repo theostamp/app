@@ -154,7 +154,7 @@
 
         async function loadReservations(tenant) {
             try {
-                const url = `/tenants_folders/${tenant}_upload_json/reservations.json/`;
+                const url = `/tenants_folders/${tenant}_upload_json/reservations.json`;
                 console.log(`Fetching reservations data from: ${url}`);
                 const response = await fetch(url);
                 if (!response.ok) {
