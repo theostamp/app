@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import check_permissions
 
 urlpatterns = [
     path('upload_json/<str:tenant>/', views.upload_json, name='upload_json'),
@@ -39,7 +38,5 @@ urlpatterns = [
     path('tenants_folders/<str:tenant>_upload_json/occupied_tables.json', views.serve_occupied_tables, name='get_occupied_tables'),
     path('tenants_folders/<str:tenant>_upload_json/reservations.json', views.serve_reservations, name='get_reservations'),
     path('table_orders/<str:tenant>/<int:table_number>/', views.table_orders, name='table_orders'),
-    path('check_permissions/', check_permissions, name='check_permissions'),
-
-
+    path('check_permissions/', views.check_permissions, name='check_permissions'),
 ]

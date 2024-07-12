@@ -269,6 +269,32 @@ def get_order(request, tenant, filename):
         logger.error(f"File not found: {file_path}")
         return JsonResponse({'error': 'File not found', 'file_path': file_path}, status=404)
 
+
+@never_cache
+@csrf_exempt
+def get_order_summary(request, tenant, filename):
+    logger.debug(f"get_order_summary called with tenant={tenant} and filename={filename}")
+    file_path = os.path.join(workspace_folder, 'tenants_folders', f'{tenant}_received_orders', filename)
+    logger.debug(f"Checking file path: {file_path}")
+
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, 'r') as file:
+                data = json.load(file)
+                logger.debug(f"File read successfully: {file_path}")
+                return JsonResponse(data)
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON decode error: {e}")
+            return HttpResponseBadRequest(f"JSON decode error: {e}")
+        except Exception as e:
+            logger.error(f"Error reading file: {e}")
+            return HttpResponseBadRequest(f"Error reading file: {e}")
+    else:
+        logger.error(f"File not found: {file_path}")
+        return JsonResponse({'error': 'File not found', 'file_path': file_path}, status=404)
+
+
+
 def table_selection(request):
     tenant = connection.get_tenant()
     tenant_name = tenant.name
@@ -292,6 +318,8 @@ def table_selection(request):
         return HttpResponseBadRequest(f"JSON decode error: {e}")
     except TypeError as e:
         return HttpResponseBadRequest(f"Type error: {e}")
+
+
 
 def order_for_table(request, table_number):
     schema_name = connection.get_schema()
