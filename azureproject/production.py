@@ -23,7 +23,7 @@ ALLOWED_HOSTS = [
     'digns.net',
     'theo.digns.net',
     'demo.digns.net',
-    '*.digns.net',
+    '*',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
