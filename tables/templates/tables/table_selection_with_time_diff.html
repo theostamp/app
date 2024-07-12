@@ -123,7 +123,7 @@
         }
 
         async function updateJsonFile(tenant, filename) {
-            const url = `/update_time_diff/${tenant}/${filename}/`;
+            const url = `/update_time_diff/${tenant}/${filename}`;
             try {
                 await fetch(url, {
                     method: 'POST'
