@@ -33,7 +33,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://digns.net',
     'https://theo.digns.net',
     'https://demo.digns.net',
-    '*',
+
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -41,7 +41,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
     'https://digns.net',
     'https://*.digns.net',
-    '*',
+
 ]
 
 # WhiteNoise configuration
