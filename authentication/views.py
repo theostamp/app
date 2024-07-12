@@ -44,6 +44,8 @@ def user_credits(request):
     }
     return render(request, 'authentication/user_credits.html', context)
 
+
+
 def create_tenant(user):
     with schema_context('public'):
         if Tenant.objects.filter(schema_name=user.username).exists():
@@ -53,6 +55,9 @@ def create_tenant(user):
             tenant = Tenant(schema_name=user.username, name=user.username)
             tenant.save()
             create_folders_for_tenant(user.username)
+
+            domain_name = f"{user.username}.digns.net"
+            Domain.objects.create(domain=domain_name, tenant=tenant, is_primary=True)
         except IntegrityError:
             return None, "Προέκυψε σφάλμα κατά τη δημιουργία του tenant."
 
@@ -69,6 +74,9 @@ def create_folders_for_tenant(tenant_name):
     for category in categories:
         tenant_folder = os.path.join(base_tenant_folder, f'{tenant_name}_{category}')
         os.makedirs(tenant_folder, exist_ok=True)
+
+
+
 
 def setup_url(request):
     if request.method == 'POST':
@@ -102,6 +110,8 @@ def create_user(username, password):
     user = User.objects.create_user(username=username, password=password)
     return user, None
 
+
+
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -129,6 +139,8 @@ def register(request):
         form = CustomUserCreationForm()
 
     return render(request, 'authentication/register.html', {'form': form})
+
+
 
 def login_view(request):
     logger.debug(f"Request method: {request.method}")
