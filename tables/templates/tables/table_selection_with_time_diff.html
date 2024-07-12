@@ -56,7 +56,7 @@
             buttons.forEach(button => {
                 if (enable) {
                     enableDrag(button);
-                    button.style.border = '2px dashed red';
+                    button.style.border = '4px dashed yellow';
                 } else {
                     button.draggable = false;
                     button.style.border = 'none';
@@ -253,7 +253,7 @@
             container.innerHTML = '';
             const containerWidth = container.clientWidth;
             const containerHeight = container.clientHeight;
-            const buttonSize = Math.min(containerWidth, containerHeight) / 5.5;
+            const buttonSize = Math.min(containerWidth, containerHeight) / 5;
             const fontSize = buttonSize / 5;
             const margin = buttonSize / 8;
 
@@ -273,7 +273,7 @@
                 button.style.padding = '10px';
                 button.style.borderRadius = '5px';
                 button.style.position = 'absolute';
-                button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)';
+                button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.6)';
 
                 if (positions[button.id]) {
                     button.style.left = `${positions[button.id].x}px`;
