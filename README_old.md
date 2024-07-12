@@ -104,7 +104,7 @@ git init
 
 
 git add .
-git commit -m "T4 "
+git commit -m "T5 with local git hub "
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
