@@ -123,7 +123,7 @@
         }
 
         async function updateJsonFile(tenant, filename) {
-            const url = `/update_time_diff/${tenant}/${filename}`;
+            const url = `/update_time_diff/${tenant}/${filename}/`;
             try {
                 await fetch(url, {
                     method: 'POST'
@@ -135,7 +135,7 @@
 
         async function loadTables(tenant) {
             try {
-                const url = `/tenants_folders/${tenant}_upload_json/occupied_tables.json`;
+                const url = `/tenants_folders/${tenant}_upload_json/occupied_tables.json/`;
                 console.log(`Fetching data from: ${url}`);
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -154,7 +154,7 @@
 
         async function loadReservations(tenant) {
             try {
-                const url = `/tenants_folders/${tenant}_upload_json/reservations.json`;
+                const url = `/tenants_folders/${tenant}_upload_json/reservations.json/`;
                 console.log(`Fetching reservations data from: ${url}`);
                 const response = await fetch(url);
                 if (!response.ok) {
