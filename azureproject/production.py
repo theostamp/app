@@ -23,6 +23,7 @@ ALLOWED_HOSTS = [
     'digns.net',
     'theo.digns.net',
     'demo.digns.net',
+    '*.digns.net',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -36,7 +37,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
     'https://dign-fkh0cyakasa6cqf4.eastus-01.azurewebsites.net',
     'https://digns.net',
-    'https://*.digns.net',
+    'https://theo.digns.net',
 ]
 
 
