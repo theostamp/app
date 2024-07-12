@@ -106,7 +106,7 @@ git init
 
 
 git add .
-git commit -m "Works ok 2 "
+git commit -m "[ERROR]  Not Found: /tenants_folders/theo_upload_json/occupied_tables.json/ "
 git branch -M main
 git remote add origin https://github.com/theostamp/app.git
 git push -u origin main 
